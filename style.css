@@ -224,7 +224,11 @@ body {
 .about-content h2 { font-size: 2rem; font-weight: 600; color: #fff; margin-bottom: 20px; }
 .about-content p { color: var(--text-muted); font-size: 1.05rem; }
 
-/* Footer */
+.about-author {
+    margin-top: 20px;
+    color: var(--cyan);
+    font-size: 0.95rem;
+}
 .footer {
     border-top: 1px solid var(--border);
     padding: 32px 0;
