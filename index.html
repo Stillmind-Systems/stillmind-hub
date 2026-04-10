@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Stillmind Hub — cognitive technologies that reconstruct and analyze the evolution of thought across time.">
     <meta name="author" content="Barack Ndenga">
+
+    <!-- Basic hardening (static-site friendly) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; upgrade-insecure-requests">
+    <meta name="referrer" content="no-referrer">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Stillmind Hub - Where Thought Becomes Traceable">
@@ -37,9 +42,9 @@
                 <img src="assets/logo.svg" alt="Stillmind Hub" class="logo-img">
             </div>
             <nav class="nav">
-                <a href="#ecosystem">Ecosystem</a>
-                <a href="#downloads">Downloads</a>
-                <a href="#about">About</a>
+                <a href="#ecosystem">Écosystème</a>
+                <a href="#downloads">Téléchargements</a>
+                <a href="#about">À propos</a>
             </nav>
         </div>
     </header>
@@ -49,10 +54,10 @@
         <div class="container">
             <div class="hero-content">
                 <h1 class="hero-title fade-in">Stillmind Hub</h1>
-                <p class="hero-subtitle fade-in">Where Thought Becomes Traceable</p>
+                <p class="hero-subtitle fade-in">Là où la pensée devient traçable</p>
                 <div class="hero-buttons fade-in">
-                    <a href="#downloads" class="btn btn-primary">Explore Downloads</a>
-                    <a href="#ecosystem" class="btn btn-secondary">Discover Ecosystem</a>
+                    <a href="#downloads" class="btn btn-primary">Choisir un téléchargement</a>
+                    <a href="#ecosystem" class="btn btn-secondary">Découvrir l’écosystème</a>
                 </div>
             </div>
         </div>
@@ -61,7 +66,7 @@
     <!-- Ecosystem Section -->
     <section id="ecosystem" class="section ecosystem">
         <div class="container">
-            <h2 class="section-title fade-in">Our Ecosystem</h2>
+            <h2 class="section-title fade-in">Notre écosystème</h2>
             <div class="ecosystem-grid">
                 <div class="card fade-in">
                     <h3>Stillmind AI</h3>
@@ -86,20 +91,71 @@
     <!-- Downloads Section -->
     <section id="downloads" class="section downloads">
         <div class="container">
-            <h2 class="section-title fade-in">Downloads</h2>
-            <div class="downloads-grid">
-                <a href="apps/logic-time-machine.apk" download class="download-card fade-in" data-download="Logic Time Machine APK">
-                    <div class="download-icon">📱</div>
-                    <h3>Logic Time Machine</h3>
-                    <p>Android APK - Experience thought reconstruction on mobile</p>
-                    <span class="download-btn">Download APK</span>
-                </a>
-                <a href="apps/stillmind-tool.exe" download class="download-card fade-in" data-download="Stillmind Tool EXE">
-                    <div class="download-icon">💻</div>
-                    <h3>Stillmind Tool</h3>
-                    <p>Windows EXE - Desktop cognitive analysis toolkit</p>
-                    <span class="download-btn">Download EXE</span>
-                </a>
+            <h2 class="section-title fade-in">Téléchargements</h2>
+            <div class="downloads-layout">
+                <div class="download-picker card fade-in">
+                    <h3>Choisis ce que tu veux télécharger</h3>
+                    <p class="muted">Sélectionne une catégorie puis ton système. Le bouton lancera le téléchargement (si le fichier est disponible).</p>
+
+                    <div class="picker-grid">
+                        <label class="field">
+                            <span>Catégorie</span>
+                            <select id="dl-category" class="select">
+                                <option value="desktop" selected>Logiciels (Desktop)</option>
+                                <option value="mobile">Applications (Mobile)</option>
+                            </select>
+                        </label>
+
+                        <label class="field">
+                            <span>Système</span>
+                            <select id="dl-platform" class="select"></select>
+                        </label>
+                    </div>
+
+                    <div class="picker-actions">
+                        <button id="dl-button" class="btn btn-primary btn-download" type="button">
+                            Télécharger
+                        </button>
+                        <a id="dl-direct-link" class="btn btn-secondary btn-small" href="#downloads">
+                            Voir le lien
+                        </a>
+                    </div>
+
+                    <div id="dl-hint" class="hint" aria-live="polite"></div>
+
+                    <div class="notice">
+                        <h4>À savoir (très important)</h4>
+                        <p>Sur GitHub Pages, tu ne peux pas vraiment forcer tous les headers (<code>_headers</code> n’est pas pris en charge). La CSP en meta aide déjà, mais la “vraie” sécurité (headers, WAF, rate-limit) dépend de l’hébergement.</p>
+                        <p>Pour que Linux/Mac/iOS téléchargent réellement, il faudra que tu ajoutes les fichiers/liens correspondants dans <code>apps/</code> (ou un lien App Store/TestFlight).</p>
+                    </div>
+                </div>
+
+                <div class="downloads-grid">
+                    <a href="apps/logic-time-machine.apk" download class="download-card fade-in" data-download="Logic Time Machine APK">
+                        <div class="download-icon">📱</div>
+                        <h3>Logic Time Machine</h3>
+                        <p>Android (APK) — Expérience mobile</p>
+                        <span class="download-btn">Télécharger APK</span>
+                    </a>
+                    <a href="apps/stillmind-tool.exe" download class="download-card fade-in" data-download="Stillmind Tool EXE">
+                        <div class="download-icon">💻</div>
+                        <h3>Stillmind Tool</h3>
+                        <p>Windows (EXE) — Outil desktop</p>
+                        <span class="download-btn">Télécharger EXE</span>
+                    </a>
+                    <div class="download-card download-card-disabled fade-in" data-download="iOS (App Store)">
+                        <div class="download-icon">🍎</div>
+                        <h3>iOS</h3>
+                        <p>iOS — Bientôt disponible (App Store / TestFlight)</p>
+                        <span class="download-btn">Indisponible</span>
+                    </div>
+                    <div class="download-card download-card-disabled fade-in" data-download="Linux / macOS">
+                        <div class="download-icon">🧩</div>
+                        <h3>Linux / macOS</h3>
+                        <p>Builds Linux + Mac Intel + Apple Silicon — bientôt</p>
+                        <span class="download-btn">Indisponible</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -108,9 +164,58 @@
     <section id="about" class="section about">
         <div class="container">
             <div class="about-content fade-in">
-                <h2>About Stillmind Systems</h2>
-                <p>Stillmind Systems builds cognitive technologies that reconstruct and analyze the evolution of thought across time — from code to scientific reasoning. We're creating the infrastructure for traceable intelligence.</p>
-                <p class="about-author">Founded by <strong>Barack Ndenga</strong></p>
+                <h2>À propos</h2>
+                <div class="about-pro">
+                    <p class="about-headline">👨‍💻 <strong>Barack Ndenga</strong></p>
+                    <p class="about-subheadline">Independent Researcher · Software Engineer · AI Systems Architect</p>
+                    <p class="about-location">Basé à Kinshasa (RDC)</p>
+
+                    <p>Je conçois des systèmes intelligents à la convergence de l’intelligence artificielle, de l’ingénierie logicielle et des sciences fondamentales. Mon travail consiste à transformer des idées complexes en architectures concrètes capables de simuler, apprendre et raisonner.</p>
+
+                    <h3 class="about-h3">🚀 Ce que je construis</h3>
+                    <p>Je développe des outils avancés dans l’écosystème open source, principalement en Go, avec un focus sur :</p>
+                    <ul class="about-list">
+                        <li><strong>🧠 Systèmes cognitifs pour développeurs</strong> — Extensions VS Code (StillMind Vault, DevContext Pro, Logic Time Machine) qui introduisent mémoire contextuelle et reconstruction logique du code</li>
+                        <li><strong>⚙️ IA locale & autonome</strong> — Déploiement de modèles via Ollama combinés à ChromaDB pour créer des systèmes capables de mémoriser et raisonner localement</li>
+                        <li><strong>🧩 Architectures intelligentes</strong> — Conception de systèmes où l’IA agit comme une extension cognitive du développeur</li>
+                    </ul>
+
+                    <h3 class="about-h3">🔬 Recherche & Exploration</h3>
+                    <p>Je mène des travaux indépendants à l’intersection IA–science :</p>
+                    <ul class="about-list">
+                        <li><strong>🧬 Drug Discovery (In Silico)</strong> — Modélisation computationnelle de molécules et exploration de composés naturels</li>
+                        <li><strong>⚛️ Physique & Modélisation</strong> — Étude de systèmes complexes et développement de méthodes de reconstruction de dynamiques physiques cachées</li>
+                        <li><strong>🤖 Physics-Informed AI</strong> — Intégration de contraintes physiques dans les modèles d’apprentissage</li>
+                    </ul>
+
+                    <h3 class="about-h3">🧠 Vision</h3>
+                    <ul class="about-list">
+                        <li>l’IA ne se limite pas à prédire → elle explique et reconstruit</li>
+                        <li>le code devient un système cognitif actif</li>
+                        <li>la recherche scientifique devient indépendante, distribuée et augmentée par l’IA</li>
+                    </ul>
+
+                    <h3 class="about-h3">🔗 Activité</h3>
+                    <ul class="about-list">
+                        <li>Contributions open source orientées outils et IA</li>
+                        <li>Publications et travaux en cours sur plateformes académiques</li>
+                        <li>Développement de concepts originaux en architectures cognitives et simulation scientifique</li>
+                    </ul>
+
+                    <div class="about-contact">
+                        <p><strong>📧</strong> <a href="mailto:ndengabarack@gmail.com">ndengabarack@gmail.com</a></p>
+                        <p><strong>📞</strong> <a href="tel:+243837767430">+243 837767430</a> (aussi pour WhatsApp)</p>
+                    </div>
+
+                    <div class="about-socials">
+                        <p><strong>LinkedIn</strong> : Barack Ndenga</p>
+                        <p><strong>X</strong> : Barack Ndenga</p>
+                        <p><strong>Google Scholar</strong> : Barack Ndenga</p>
+                        <p><strong>Threads</strong> : Barack Ndenga</p>
+                        <p><strong>Academia.edu</strong> : Barack Ndenga</p>
+                        <p><strong>ResearchGate</strong> : Barack Ndenga</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
