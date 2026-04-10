@@ -9,11 +9,17 @@ A modern, minimalistic landing page for Stillmind Systems ecosystem.
 - Smooth animations and interactions
 - Download tracking (console logs)
 - GitHub Pages / Cloudflare Pages ready
+- Security hardening (CSP + headers for supported hosts)
 
 ## Deployment
 1. Fork/clone this repo
 2. Enable GitHub Pages
 3. Done!
+
+## Security (important)
+- `index.html` includes a **Content Security Policy** via a `<meta http-equiv="Content-Security-Policy">` tag.
+- `_headers` adds common **security headers** for hosts that support it (ex: Cloudflare Pages / Netlify).
+- GitHub Pages does **not** support custom response headers in the same way; the CSP meta still helps, but server-side protections depend on your hosting.
 
 ## Local Preview
 ```bash
